@@ -212,7 +212,7 @@ abstract class Base implements HandlerInterface, LoggerAwareInterface
                 ": \n".$ex->getTraceAsString()
             );
             $this->logRequestAndResponse($messageName);
-            
+            //As PNR_retrieve or other message can SoapFault as response, We still need to get the session in the headers for next message call 
             $this->handlePostMessage($messageName, $this->getLastResponse($messageName), $messageOptions, $result);
             
             $result->exception = $ex;
